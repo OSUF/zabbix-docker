@@ -136,7 +136,6 @@ services:
   image: busybox
   volumes:
    - ./zbx_env/var/lib/postgresql/data:/var/lib/postgresql/data:rw
-  restart: unless-stopped
 
 networks:
   zbx_net_frontend:
