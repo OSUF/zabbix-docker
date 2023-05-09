@@ -57,6 +57,7 @@ services:
    com.zabbix.component: "zabbix-server"
    com.zabbix.dbtype: "pgsql"
    com.zabbix.os: "alpine"
+  restart: unless-stopped
 
  zabbix-web-nginx-pgsql:
   image: zabbix/zabbix-web-nginx-pgsql:alpine-6.4-latest
@@ -108,6 +109,7 @@ services:
    com.zabbix.webserver: "nginx"
    com.zabbix.dbtype: "pgsql"
    com.zabbix.os: "alpine"
+  restart: unless-stopped
 
  postgres-server:
   image: postgres:14-alpine
@@ -128,11 +130,13 @@ services:
      - postgres-server
      - pgsql-server
      - pgsql-database
+  restart: unless-stopped
 
  db_data_pgsql:
   image: busybox
   volumes:
    - ./zbx_env/var/lib/postgresql/data:/var/lib/postgresql/data:rw
+  restart: unless-stopped
 
 networks:
   zbx_net_frontend:
